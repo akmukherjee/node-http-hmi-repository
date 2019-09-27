@@ -9,6 +9,19 @@ pipeline {
     DOCKER_REGISTRY_ORG = 'todds-demo-space'
   }
   stages {
+    stage('Lint'){
+      when {
+        branch 'master'
+      }
+      steps{
+        container('nodejs') {
+          sh "jx step credential -s npm-token -k file -f /builder/home/.npmrc --optional=true"
+          sh "npm install"
+          sh "CI=true DISPLAY=:99 npm lint"
+
+          }
+       }
+    }
     stage('CI Build and push snapshot') {
       when {
         branch 'PR-*'
