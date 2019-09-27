@@ -5,6 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"no test specified\" && exit 0",
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "eslint -c .eslintrc.json *.js"
+
   }
 }
