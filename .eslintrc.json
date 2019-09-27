@@ -1,0 +1,6 @@
+{
+    "rules": {
+        "no-unused-vars": "warn",
+        "quotes": [2, "single", { "allowTemplateLiterals": true }]
+    }
+}
