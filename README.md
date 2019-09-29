@@ -53,3 +53,11 @@ A Linting Error is deliberately introduced by tweaking the server.js file and as
 <p align="center"> 
 <img src="images/PipelineErrorLint.jpg">
 </p>
+
+### Pull Request Flow
+
+When a branch is created and a Pull Request generated, the PR kicks off the build and pushes the docker image to Docker Hub as shown below. It does not deploy it to the staging environment. That happens ONLY when the PR is merged into the Master.
+
+<p align="center"> 
+<img src="images/PRFlow.jpg">
+</p>
