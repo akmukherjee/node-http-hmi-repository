@@ -15,7 +15,7 @@ var server = http.createServer(function(req, resp){
 		}
 	});
 });
-var error="I am an error";
+var errorFixed="I am a fixed error";
 
 server.listen(8080);
 
