@@ -14,7 +14,8 @@ In this project, a simple NodeJS application is deployed using JenkinsX and Kube
 
 ###  Cluster Creation
 
-The project was created on the Google Cloud Platform due to known issues with running JenkinsX. JenkinsX was first installed on a GCP Virtual Machine and subsequently a GCP Cluster was created as shown below. The Cluster contains a 3 Worker Nodes.
+The project was created on the Google Cloud Platform due to known issues with running JenkinsX. JenkinsX was first installed on a GCP Virtual Machine and subsequently a GCP Cluster was created as shown below. The Cluster contains a 3 Worker Nodes. The cluster was created using the command 
+**jx create cluster gke --skip-login**
 
 <p align="center"> 
 <img src="images/K8sClusterNodes.jpg">
@@ -31,12 +32,24 @@ A Simple NodeJS application was created using JenkinsX which displays a page as 
 
 ### Pipeline Creation
 
-The above steps result in creation of a simple Pipeline which creates a Docker Image and upon successfult build uploads the image to DockerHub and deploys it to the Staging Environment first. A Canary strategy is used here where if the deployment works on the Staging Environment it gets deployed to the Production Environment.
+The above steps result in creation of a simple Pipeline which creates a Docker Image and upon successfult build uploads the image to DockerHub and deploys it to the Staging Environment first. 
 
 
 <p align="center"> 
 <img src="images/PipelinePreLint.jpg">
 </p>
+
+### Deployment Strategy
+
+A Canary strategy is used here where if the deployment works on the Staging Environment it gets deployed to the Production Environment. A rolling deployment strategy is used and the pods. When a build works successfully on the staging environment it can be promoted to the production environment using the command **jx promote --version 0.0.7 --env production** and the pods get a rolling update and the environment gets updated as can be seen from the screenshot of production cluster after deployment. 
+
+
+<p align="center"> 
+<img src="images/PipelineProductionPostDeploy.jpg">
+</p>
+
+
+
 
 ### Addition of a Lint Step
 
